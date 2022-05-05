@@ -14,6 +14,6 @@ const clients = [
     new Promise(resolve =>
       setTimeout(() => {
         resolve(clients[Math.floor(Math.random() * clients.length)]);
-      }, Math.random() * 2500)
+      }, Math.random() * 1000)
     );
   export default fetchClients;
