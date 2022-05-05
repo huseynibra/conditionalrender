@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import  ClientCard  from "./ClientCard";
+import  fetchClients  from "./fetchClients";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    client: null,
+    
+  };
+
+  componentDidMount() {
+    fetchClients().then((client) => {
+      this.setState({
+        client
+      });
+    });
+  };
+  render() {
+    const data =  this.state.client;
+    return <>
+    {data ? <ClientCard name={data.name} phone={data.phone} card={data.card}/> : null}
+    </>
+  }
 }
 
 export default App;
